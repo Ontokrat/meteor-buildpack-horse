@@ -2,11 +2,9 @@
 #
 # Clear CloudFlare cache / Lauched on app deploy
 #
-# Environment variables used: CF_ZONE_ID / CF_AUTH_KEY / CF_EMAIL
-#
-# API used: https://api.cloudflare.com/#zone-purge-all-files
-#
 
+
+# API used: https://api.cloudflare.com/#zone-purge-all-files
 purgeCache() {
 	local result=$(curl -L --write-out %{http_code} --silent --output /dev/null \
 	-X DELETE "https://api.cloudflare.com/client/v4/zones/${CF_ZONE_ID}/purge_cache" \
@@ -17,11 +15,14 @@ purgeCache() {
 	echo "$result"
 }
 
+# Check if all config vars necessary are present
 if [ -n "\$CF_EMAIL" ] && [ -n "\$CF_AUTH_KEY" ] && [ -n "\$CF_ZONE_ID" ] ; then
 	echo "-----> Purging CloudFlare cache..."
 
+	# launching the purging of cache
 	result=$(purgeCache)
 
+	# print result of API call
 	if [ $result -ne "200" ]; then
 		echo "-----> Failure // CloudFlare Cache Not Purged: ${result}"
 	else
