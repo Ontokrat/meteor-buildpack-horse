@@ -24,9 +24,9 @@ if [ -n "\$CF_EMAIL" ] && [ -n "\$CF_AUTH_KEY" ] && [ -n "\$CF_ZONE_ID" ] ; then
 
 	# print result of API call
 	if [ $result -ne "200" ]; then
-		echo "-----> Failure // CloudFlare Cache Not Purged: ${result}"
+		echo "-----> Failure: CloudFlare Cache Not Purged (${result} status)"
 	else
-		echo "-----> Success // CloudFlare Cache Purged: ${result}"
+		echo "-----> Success: CloudFlare Cache Purged (${result} status)"
 	fi
 
 else
