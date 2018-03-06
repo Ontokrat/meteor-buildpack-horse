@@ -17,7 +17,7 @@ purgeCache() {
 
 # Check if all config vars necessary are present
 if [ -n "\$CF_EMAIL" ] && [ -n "\$CF_AUTH_KEY" ] && [ -n "\$CF_ZONE_ID" ] ; then
-	echo "-----> Purging CloudFlare cache..."
+	echo "-----> Purging CloudFlare Cache..."
 
 	# launching the purging of cache
 	result=$(purgeCache)
